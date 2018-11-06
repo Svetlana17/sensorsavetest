@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 switch(evt.sensor.getType()) {
                     case Sensor.TYPE_ACCELEROMETER:
                    ///  ---оригинал  writer.write(String.format("%d;  %f; %f; %f; %f; %f; %f\n", evt.timestamp, evt.values[0], evt.values[1], evt.values[2], 0.f, 0.f, 0.f));
-                  writer.write(String.format("%d;  %f; %f; %f; %f; %f; %f\n", evt.timestamp, evt.values[0], evt.values[1], evt.values[2], evt.values[0]*2, evt.values[1]*2, evt.values[2]*2, 0.f, 0.f, 0.f, 0.f, 0.f, 0.f)
+                  writer.write(String.format("%d;  %f; %f; %f; %f; %f; %f\n", evt.timestamp, evt.values[0], evt.values[1], evt.values[2],  0.f, 0.f, 0.f)
 
                   );
 
@@ -158,7 +158,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private static void zipFile(ZipOutputStream zos, File file) throws IOException {
         zos.putNextEntry(new ZipEntry(file.getName()));
         FileInputStream fis = new FileInputStream(file);
-        byte[] buffer = new byte[4092];
+        //byte[] buffer = new byte[4092];
+        byte[] buffer = new byte[10000];
         int byteCount = 0;
         try {
             while ((byteCount = fis.read(buffer)) != -1) {
